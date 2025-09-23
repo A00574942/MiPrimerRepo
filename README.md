@@ -1,7 +1,7 @@
 # MiPrimerRepo
 Este es un repo de prueba en github
 Integrantes de mi equipo:
-- Marcelo Vazquez
+- Marcelo Vázquez
 - Liam Miniham
 - Mauricio Zermeño
 - Gabriel Aranda
