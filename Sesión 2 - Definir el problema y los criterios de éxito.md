@@ -33,7 +33,7 @@ Pérdida de movilidad y autonomía
 Impacto emocional y social
  Al no poder mantenerse activos, los adultos mayores también enfrentan problemas emocionales como frustración, tristeza o incluso depresión. Esto se suma al aislamiento social, ya que reducen sus salidas y su interacción con otras personas.
 
-
+![Diagrama] (diagrama.png)
 
 
 3. Criterios de éxito (medibles y realistas)
