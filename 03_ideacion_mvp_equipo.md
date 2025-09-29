@@ -1,6 +1,6 @@
 1. Seis posibles soluciones al problema
 
-App móvil simplificada con conteo de pasos manual
+- App móvil simplificada con conteo de pasos manual
  Una app donde el adulto mayor pueda registrar sus pasos y peso de forma sencilla, sin depender de sensores ni wearables.
 
 
