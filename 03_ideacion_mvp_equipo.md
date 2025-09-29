@@ -89,5 +89,26 @@ data/
 
 ```mermaid
 flowchart TD
-  X[Inicio] --> Y[Registro]
+  A["Inicio<br/>• Carga CSV<br/>• Pasos de hoy<br/>• Mensaje motivacional"] -->|Registrar pasos| B["Registrar<br/>• Fecha (auto)<br/>• Pasos (obligatorio)<br/>• Peso (opcional)"]
+  A -->|Ver progreso| C["Progreso semanal<br/>• Lee CSV<br/>• Genera grafica PNG<br/>• Estado de meta"]
+  A -->|Configurar meta (Should)| D["Configurar meta<br/>• Meta diaria<br/>• Guardar en config"]
+  A -->|Salir| E[Terminar]
+
+  B -->|Guardar OK| A
+  B -->|Cancelar| A
+
+  C -->|Regresar| A
+  D -->|Guardar| A
+
+  A --> F{{CSV existe?}}
+  F -->|No| G["Crear CSV con encabezados:<br/>fecha,pasos,peso"] --> A
+  F -->|Si| A
+
+  B --> H{Pasos validos?}
+  H -->|Si| I["Escribir/actualizar fila de hoy en CSV"] --> A
+  H -->|No| B
+
+  A --> J{Hoy >= meta?}
+  J -->|Si| K["Mostrar felicitacion (Should)"]
+  J -->|No| L["Mostrar alerta motivacional (Must)"]
 ```
