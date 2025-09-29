@@ -1,4 +1,20 @@
-**1. Seis posibles soluciones al problema**
+## Resumen del problema y criterios de éxito
+
+En México, muchos adultos mayores no cumplen con la actividad física mínima recomendada por la OMS porque las aplicaciones disponibles son complejas, están en inglés o requieren dispositivos costosos. Esto limita su capacidad de registrar y monitorear su progreso, reduciendo su motivación y afectando su salud y autonomía.
+
+Nuestro prototipo busca ofrecer una herramienta simple y accesible para que los adultos mayores puedan registrar manualmente sus pasos y peso, visualizar su avance con gráficas claras y recibir mensajes motivacionales que los animen a mantenerse activos.
+
+Criterios de éxito:
+
+El usuario puede registrar sus pasos y peso fácilmente sin ayuda externa.
+
+La aplicación guarda la información de manera persistente y la muestra en una gráfica semanal clara.
+
+Se envían alertas motivacionales cuando no se alcanzan los pasos recomendados.
+
+La experiencia es amigable y accesible para adultos mayores con poca experiencia tecnológica.
+
+ODS relacionado: ODS 3 – Salud y Bienestar, fomentando hábitos saludables y actividad física accesible para adultos mayores.**1. Seis posibles soluciones al problema**
 
 - App móvil simplificada con conteo de pasos manual
  Una app donde el adulto mayor pueda registrar sus pasos y peso de forma sencilla, sin depender de sensores ni wearables.
