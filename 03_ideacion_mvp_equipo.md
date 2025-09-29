@@ -85,6 +85,9 @@ viz/
 data/
  Lectura y escritura de datos en CSV (guardar pasos y peso, recuperar historial).
 
+
+
+
 flowchart TD
   A["Inicio<br/>• Carga CSV<br/>• Pasos de hoy<br/>• Mensaje motivacional"] -->|Registrar pasos| B["Registrar<br/>• Fecha (auto)<br/>• Pasos (obligatorio)<br/>• Peso (opcional)"]
   A -->|Ver progreso| C["Progreso semanal<br/>• Lee CSV<br/>• Genera grafica PNG<br/>• Estado de meta"]
@@ -108,3 +111,4 @@ flowchart TD
   A --> J{Hoy >= meta?}
   J -->|Si| K["Mostrar felicitacion (Should)"]
   J -->|No| L["Mostrar alerta motivacional (Must)"]
+
