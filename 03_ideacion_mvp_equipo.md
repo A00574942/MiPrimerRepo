@@ -87,18 +87,23 @@ Sincronización en la nube.
 
 División de módulos
 app/
+
  Contendrá la interfaz hecha en PySimpleGUI (ventanas para registrar datos y mostrar gráficas).
 
 core/
+
  Lógica de negocio: validación de datos, cálculo de metas, generación de mensajes motivacionales.
 
 api/
+
  Futuro módulo (para MVP se deja vacío o simulado) que conectaría con podómetros o APIs externas si se quisiera extender.
 
 viz/
+
  Uso de matplotlib para generar gráficas semanales claras y coloridas.
 
 data/
+
  Lectura y escritura de datos en CSV (guardar pasos y peso, recuperar historial).
 
 
