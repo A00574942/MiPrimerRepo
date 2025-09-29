@@ -87,28 +87,26 @@ data/
 
  ### Wireflow / flujo de pantallas
 
-```mermaid
 flowchart TD
-    A[Inicio\n- Carga CSV\n- Pasos de hoy\n- Mensaje motivacional] -->|Registrar pasos| B[Registrar\n- Fecha (auto)\n- Pasos (obligatorio)\n- Peso (opcional)]
-    A -->|Ver progreso| C[Progreso semanal\n- Lee CSV\n- Genera gráfica PNG\n- Estado de meta]
-    A -->|Configurar meta (Should)| D[Configurar meta\n- Meta diaria\n- Guardar en config]
-    A -->|Salir| E[Terminar]
+  A["Inicio<br/>• Carga CSV<br/>• Pasos de hoy<br/>• Mensaje motivacional"] -->|Registrar pasos| B["Registrar<br/>• Fecha (auto)<br/>• Pasos (obligatorio)<br/>• Peso (opcional)"]
+  A -->|Ver progreso| C["Progreso semanal<br/>• Lee CSV<br/>• Genera grafica PNG<br/>• Estado de meta"]
+  A -->|Configurar meta (Should)| D["Configurar meta<br/>• Meta diaria<br/>• Guardar en config"]
+  A -->|Salir| E[Terminar]
 
-    B -->|Guardar OK| A
-    B -->|Cancelar| A
+  B -->|Guardar OK| A
+  B -->|Cancelar| A
 
-    C -->|Regresar| A
-    D -->|Guardar| A
+  C -->|Regresar| A
+  D -->|Guardar| A
 
-    A --> F{{¿Existe CSV?}}
-    F -- No --> G[Crear CSV con encabezados: fecha,pasos,peso] --> A
-    F -- Sí --> A
+  A --> F{{"CSV existe?"}}
+  F -->|No| G["Crear CSV con encabezados:<br/>fecha,pasos,peso"] --> A
+  F -->|Si| A
 
-    H{{¿Pasos válidos?}}
-    B --> H
-    H -- Sí --> I[Escribir/actualizar fila de hoy en CSV] --> A
-    H -- No --> B
+  B --> H{"Pasos validos?"}
+  H -->|Si| I["Escribir/actualizar fila de hoy en CSV"] --> A
+  H -->|No| B
 
-    A --> J{{¿Hoy >= meta?}}
-    J -- Sí --> K[Mostrar felicitación (Should)]
-    J -- No --> L[Mostrar alerta motivacional (Must)]
+  A --> J{"Hoy >= meta?"}
+  J -->|Si| K["Mostrar felicitacion (Should)"]
+  J -->|No| L["Mostrar alerta motivacional (Must)"]
