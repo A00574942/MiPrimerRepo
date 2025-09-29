@@ -87,5 +87,7 @@ data/
 
 
 
+```mermaid
 flowchart TD
   X[Inicio] --> Y[Registro]
+```
