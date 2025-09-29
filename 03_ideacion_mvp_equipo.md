@@ -84,3 +84,31 @@ viz/
 
 data/
  Lectura y escritura de datos en CSV (guardar pasos y peso, recuperar historial).
+
+ ### Wireflow / flujo de pantallas
+
+```mermaid
+flowchart TD
+    A[Inicio\n- Carga CSV\n- Pasos de hoy\n- Mensaje motivacional] -->|Registrar pasos| B[Registrar\n- Fecha (auto)\n- Pasos (obligatorio)\n- Peso (opcional)]
+    A -->|Ver progreso| C[Progreso semanal\n- Lee CSV\n- Genera gráfica PNG\n- Estado de meta]
+    A -->|Configurar meta (Should)| D[Configurar meta\n- Meta diaria\n- Guardar en config]
+    A -->|Salir| E[Terminar]
+
+    B -->|Guardar OK| A
+    B -->|Cancelar| A
+
+    C -->|Regresar| A
+    D -->|Guardar| A
+
+    A --> F{{¿Existe CSV?}}
+    F -- No --> G[Crear CSV con encabezados: fecha,pasos,peso] --> A
+    F -- Sí --> A
+
+    H{{¿Pasos válidos?}}
+    B --> H
+    H -- Sí --> I[Escribir/actualizar fila de hoy en CSV] --> A
+    H -- No --> B
+
+    A --> J{{¿Hoy >= meta?}}
+    J -- Sí --> K[Mostrar felicitación (Should)]
+    J -- No --> L[Mostrar alerta motivacional (Must)]
