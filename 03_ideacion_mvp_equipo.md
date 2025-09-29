@@ -27,7 +27,7 @@
 
 **2. Selección de la idea base para el MVP**
 La idea elegida es la App móvil simplificada con conteo de pasos manual y visualización clara del progreso, porque:
-ODS relacionado: ODS 3 (Salud y Bienestar).
+- ODS relacionado: ODS 3 (Salud y Bienestar).
 
 
 - Población objetivo: Adultos mayores en México con poco acceso a apps complejas.
@@ -37,7 +37,7 @@ ODS relacionado: ODS 3 (Salud y Bienestar).
 
 
 Clasificación MoSCoW para el MVP:
-Must (indispensable):
+- Must (indispensable):
 
 Registro manual de pasos y peso.
 
@@ -47,19 +47,19 @@ Visualización de gráfica semanal clara y comprensible.
 
 Alertas motivacionales si no cumplen los 7,000 pasos.
 
-Should (importante, pero no crítico en el MVP):
+- Should (importante, pero no crítico en el MVP):
 
 Mensajes de felicitación cuando se cumple la meta.
 
 Posibilidad de editar registros anteriores.
 
-Could (deseable, pero no necesario en el MVP):
+- Could (deseable, pero no necesario en el MVP):
 
 Interfaz de voz o lectura automática de pasos desde un wearable.
 
 Retos comunitarios o familiares.
 
-Won’t (no se incluye en MVP):
+- Won’t (no se incluye en MVP):
 
 Integración con redes sociales.
 
