@@ -85,8 +85,6 @@ viz/
 data/
  Lectura y escritura de datos en CSV (guardar pasos y peso, recuperar historial).
 
- ### Wireflow / flujo de pantallas
-
 flowchart TD
   A["Inicio<br/>• Carga CSV<br/>• Pasos de hoy<br/>• Mensaje motivacional"] -->|Registrar pasos| B["Registrar<br/>• Fecha (auto)<br/>• Pasos (obligatorio)<br/>• Peso (opcional)"]
   A -->|Ver progreso| C["Progreso semanal<br/>• Lee CSV<br/>• Genera grafica PNG<br/>• Estado de meta"]
@@ -99,14 +97,14 @@ flowchart TD
   C -->|Regresar| A
   D -->|Guardar| A
 
-  A --> F{{"CSV existe?"}}
+  A --> F{{CSV existe?}}
   F -->|No| G["Crear CSV con encabezados:<br/>fecha,pasos,peso"] --> A
   F -->|Si| A
 
-  B --> H{"Pasos validos?"}
+  B --> H{Pasos validos?}
   H -->|Si| I["Escribir/actualizar fila de hoy en CSV"] --> A
   H -->|No| B
 
-  A --> J{"Hoy >= meta?"}
+  A --> J{Hoy >= meta?}
   J -->|Si| K["Mostrar felicitacion (Should)"]
   J -->|No| L["Mostrar alerta motivacional (Must)"]
