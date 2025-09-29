@@ -1,4 +1,4 @@
-1. Seis posibles soluciones al problema
+**1. Seis posibles soluciones al problema**
 
 - App móvil simplificada con conteo de pasos manual
  Una app donde el adulto mayor pueda registrar sus pasos y peso de forma sencilla, sin depender de sensores ni wearables.
@@ -25,7 +25,7 @@
 
 
 
-2. Selección de la idea base para el MVP
+**2. Selección de la idea base para el MVP**
 La idea elegida es la App móvil simplificada con conteo de pasos manual y visualización clara del progreso, porque:
 ODS relacionado: ODS 3 (Salud y Bienestar).
 
