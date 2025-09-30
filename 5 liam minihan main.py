@@ -1,3 +1,15 @@
+#liam Minihan Aguirre
+Creé la ventana principal (menú) con tkinter (no requiere librerías externas).
+-Agregué 6 botones:
+Home
+Formulario
+Lista
+Tabla
+Canvas
+salir
+-Cada botón abre una subventana (Toplevel) con un mensaje diferente, para que cada integrante pueda personalizar su parte.
+-En la ventana Canvas, programé un ejemplo con un rectángulo azul para mostrar cómo usar gráficos simples en tkinter.
+-Implementé el botón Salir, que cierra toda la aplicación.
 #main.py
 import tkinter as tk
 import sys
