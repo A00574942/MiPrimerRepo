@@ -1,3 +1,5 @@
+![fot_camilo](foto_camilo.png)
+
 #liam Minihan Aguirre
 Creé la ventana principal (menú) con tkinter (no requiere librerías externas).
 -Agregué 6 botones:
