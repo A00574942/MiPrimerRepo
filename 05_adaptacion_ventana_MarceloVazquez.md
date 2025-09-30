@@ -15,6 +15,7 @@ Cambios realizados:
 
 <img width="397" height="408" alt="image" src="https://github.com/user-attachments/assets/1a446fdf-7aab-4cfc-ac06-1c44ae222c1b" />
 
+```python
 
 import tkinter as tk
 from tkinter import messagebox
@@ -89,3 +90,5 @@ btn_avanzar = tk.Button(ventana, text="Avanzar", command=abrir_win_list, bg="blu
 btn_avanzar.grid(row=7, column=0, columnspan=2, pady=10)
 
 ventana.mainloop()
+
+
