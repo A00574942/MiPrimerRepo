@@ -1,5 +1,21 @@
 win_form.py: adaptar los campos (ej. en vez de “Nombre” y “Edad”, usar “Correo”, “Ciudad”, etc.).
 
+Cambios realizados:
+
+- Campos del formulario → se añadieron Edad (años) y Estatura (cm) además de los que ya estaban (Correo, Ciudad, Pasos, Peso).
+
+- Validación de datos → si algún campo está vacío, aparece un error; si todo está completo, se muestra un popup con el resumen.
+
+- Botón Avanzar → se agregó un botón azul que cierra esta ventana y abre automáticamente win_list.py.
+
+- Función abrir_win_list() → implementada con subprocess y sys.executable para ejecutar el archivo win_list.py en el mismo intérprete de Python.
+
+- Organización visual → la ventana ahora tiene un tamaño ajustado (400x380), todos los campos están alineados y los botones quedan ordenados en la parte inferior.
+
+
+<img width="397" height="408" alt="image" src="https://github.com/user-attachments/assets/1a446fdf-7aab-4cfc-ac06-1c44ae222c1b" />
+
+
 import tkinter as tk
 from tkinter import messagebox
 import subprocess
