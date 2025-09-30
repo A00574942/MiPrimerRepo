@@ -32,5 +32,5 @@ Me pareció importante que no hubiera pasos extra antes de llegar al inicio de s
 
 La sección de idioma y el logo le dan un toque más profesional y accesible, haciéndola más amigable y confiable.
 Creo que con estos cambios logramos que la aplicación sea simple y cercana, para que los abuelitos se sientan cómodos usándola y puedan enfocarse en lo importante: registrar su actividad y mantenerse activos para mejorar su salud.
-
+![Diagrama](abuelito.png.png)
 
