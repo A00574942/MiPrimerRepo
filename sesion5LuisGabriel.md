@@ -21,7 +21,7 @@ Verde claro → cuando los pasos son mayores o iguales a 7000 (meta cumplida).
 Gris claro → para alternar filas y mejorar la legibilidad.
 
 Ajusté el tamaño de la ventana y las columnas para que la información sea clara y visible.
-
+![foto_camilo](tablasasion5.png)
 Breve reflexión
 
 Estos cambios apoyan la idea del proyecto porque permiten a un adulto mayor (nuestro usuario objetivo) visualizar fácilmente si cumplió con la meta diaria de pasos. El uso de colores simples y claros evita confusiones y da retroalimentación inmediata, mientras que los datos de fecha, pasos y peso son justamente la información que buscamos registrar en el MVP.
