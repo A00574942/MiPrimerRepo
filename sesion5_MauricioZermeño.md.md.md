@@ -47,6 +47,8 @@ def next_id(rows):
     except Exception:
         return str(len(rows) + 1)
 
+        ![foto_camilo](foto.png)
+
 # --------- Ventana principal de la lista ----------
 class ListWindow(tk.Toplevel):
     def __init__(self, master=None):
