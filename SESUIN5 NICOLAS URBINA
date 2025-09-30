@@ -1,0 +1,183 @@
+#Este es mi código donde represento la calculadora de BMI
+# app/win_canvas.py
+# Una sola función: open_win_canvas(parent) -> abre ventana BMI con Tkinter
+
+import math
+import tkinter as tk
+from tkinter import ttk, font as tkfont
+from pathlib import Path
+
+def open_win_canvas(parent: tk.Tk):
+    """Abre un Toplevel con interfaz tipo BMI (IMC) + gauge y imagen motivacional."""
+    # --- Ventana ---
+    win = tk.Toplevel(parent)
+    win.title("BMI")
+    win.geometry("360x620")
+    win.configure(bg="white")
+    win.resizable(False, False)
+
+    # --- Fuentes ---
+    font_title = tkfont.Font(family="Segoe UI", size=16, weight="bold")
+    font_label = tkfont.Font(family="Segoe UI", size=11)
+    font_btn   = tkfont.Font(family="Segoe UI", size=11, weight="bold")
+
+    # --- Título ---
+    tk.Label(win, text="BMI", bg="white", fg="#263238", font=font_title, pady=6)\
+      .pack(anchor="w", padx=16)
+
+    # --- Imagen motivacional (si existe) ---
+    def place_motivational():
+        img_path = Path(__file__).resolve().parents[1] / "assets" / "motivacion.png"
+        if img_path.exists():
+            try:
+                img = tk.PhotoImage(file=str(img_path))
+                # reducir si es muy grande
+                ratio = max(img.width() // 300, 1)
+                if ratio > 1:
+                    img = img.subsample(ratio, ratio)
+                lbl = tk.Label(win, image=img, bg="white")
+                lbl.image = img
+                lbl.pack(pady=(0, 6))
+                return
+            except Exception:
+                pass
+        tk.Label(win, text="✨ ¡Cada paso cuenta!", bg="white",
+                 fg="#1B5E20", font=("Segoe UI", 12, "bold")).pack(pady=(0, 6))
+    place_motivational()
+
+    # --- Tarjeta de entradas ---
+    card = tk.Frame(win, bg="#F5F7FA", bd=0, highlightthickness=1, highlightbackground="#CFD8DC")
+    card.pack(fill="x", padx=16, pady=(4, 8))
+
+    # Fila edad/sexo
+    row1 = tk.Frame(card, bg="#F5F7FA")
+    row1.pack(fill="x", padx=10, pady=6)
+    tk.Label(row1, text="AGE", bg="#F5F7FA", font=font_label).grid(row=0, column=0, sticky="w")
+    var_age = tk.StringVar(value="65")
+    ttk.Entry(row1, textvariable=var_age, width=8, justify="right").grid(row=1, column=0, sticky="w")
+
+    tk.Label(row1, text="Sex", bg="#F5F7FA", font=font_label).grid(row=0, column=1, sticky="w", padx=(16,0))
+    var_sex = tk.StringVar(value="Male")
+    ttk.Combobox(row1, textvariable=var_sex, values=["Male","Female"], width=10, state="readonly")\
+        .grid(row=1, column=1, sticky="w", padx=(16,0))
+
+    # Fila peso
+    row2 = tk.Frame(card, bg="#F5F7FA")
+    row2.pack(fill="x", padx=10, pady=6)
+    tk.Label(row2, text="WEIGHT", bg="#F5F7FA", font=font_label).grid(row=0, column=0, sticky="w")
+    var_weight = tk.StringVar(value="69")
+    ttk.Entry(row2, textvariable=var_weight, width=12, justify="right").grid(row=1, column=0, sticky="w")
+    tk.Label(row2, text="kg", bg="#F5F7FA").grid(row=1, column=1, padx=(6,0), sticky="w")
+
+    # Fila altura
+    row3 = tk.Frame(card, bg="#F5F7FA")
+    row3.pack(fill="x", padx=10, pady=6)
+    tk.Label(row3, text="HEIGHT", bg="#F5F7FA", font=font_label).grid(row=0, column=0, sticky="w")
+    var_height = tk.StringVar(value="165")
+    ttk.Entry(row3, textvariable=var_height, width=12, justify="right").grid(row=1, column=0, sticky="w")
+    tk.Label(row3, text="cm", bg="#F5F7FA").grid(row=1, column=1, padx=(6,0), sticky="w")
+
+    # --- Canvas gauge ---
+    W, H = 320, 220
+    cx, cy = W//2, H-10
+    radius = min(cx, H-20)
+    canvas = tk.Canvas(win, width=W, height=H, bg="#ECEFF1", highlightthickness=0)
+    canvas.pack(padx=16, pady=10)
+
+    # Elementos dinámicos (se crean luego)
+    needle = None
+    bmi_value_text = None
+    bmi_cat_text = None
+
+    # --- Dibujo estático del gauge ---
+    BMI_MIN, BMI_MAX = 16.0, 40.0
+    def clamp(val, lo, hi): return max(lo, min(hi, val))
+
+    def angle_for_bmi(bmi: float) -> float:
+        # 200° (izq) a -20° (der)
+        start_deg, end_deg = 200.0, -20.0
+        bmi = clamp(bmi, BMI_MIN, BMI_MAX)
+        t = (bmi - BMI_MIN) / (BMI_MAX - BMI_MIN)
+        return math.radians(start_deg + (end_deg - start_deg) * t)
+
+    def draw_arc_segment(a0_deg, a1_deg, color, width=26):
+        pad = 14
+        canvas.create_arc(cx-radius+pad, cy-radius+pad, cx+radius-pad, cy+radius-pad,
+                          start=a0_deg, extent=(a1_deg-a0_deg), style="arc",
+                          width=width, outline=color)
+
+    # Rangos
+    a16  = math.degrees(angle_for_bmi(16.0))
+    a185 = math.degrees(angle_for_bmi(18.5))
+    a25  = math.degrees(angle_for_bmi(25.0))
+    a30  = math.degrees(angle_for_bmi(30.0))
+    a40  = math.degrees(angle_for_bmi(40.0))
+    # Colorear segmentos
+    draw_arc_segment(a16,  a185, "#FFB300")  # underweight (amarillo)
+    draw_arc_segment(a185, a25,  "#43A047")  # normal (verde)
+    draw_arc_segment(a25,  a30,  "#FB8C00")  # overweight (naranja)
+    draw_arc_segment(a30,  a40,  "#E53935")  # obesity (rojo)
+
+    # Ticks principales
+    for val in (16, 18.5, 25, 30, 40):
+        ang = angle_for_bmi(val)
+        x1 = cx + (radius-34) * math.cos(ang)
+        y1 = cy + (radius-34) * math.sin(ang)
+        x2 = cx + (radius-8)  * math.cos(ang)
+        y2 = cy + (radius-8)  * math.sin(ang)
+        canvas.create_line(x1, y1, x2, y2, width=2, fill="#90A4AE")
+
+    # Centro/“eje” de la aguja
+    canvas.create_oval(cx-6, cy-6, cx+6, cy+6, fill="#607D8B", outline="")
+
+    # Textos fijos
+    canvas.create_text(cx, cy-70, text="YOUR BMI", font=("Segoe UI", 10, "bold"), fill="#607D8B")
+    bmi_value_text = canvas.create_text(cx, cy-48, text="--.-", font=("Segoe UI", 22, "bold"), fill="#2E7D32")
+    bmi_cat_text   = canvas.create_text(cx, cy-24, text="",   font=("Segoe UI", 10),       fill="#455A64")
+
+    # --- Lógica de cálculo/actualización ---
+    def bmi_from(w_kg: float, h_cm: float) -> float:
+        if h_cm <= 0: return 0.0
+        m = h_cm / 100.0
+        return w_kg / (m * m)
+
+    def bmi_category(bmi: float) -> tuple[str, str]:
+        if bmi < 18.5: return "Underweight", "#FFB300"
+        if bmi <= 24.9: return "Normal weight", "#2E7D32"
+        if bmi <= 29.9: return "Overweight", "#FB8C00"
+        return "Obesity", "#E53935"
+
+    def actualizar_bmi():
+        nonlocal needle
+        try:
+            w = float(var_weight.get())
+            h = float(var_height.get())
+        except ValueError:
+            w, h = 0.0, 0.0
+
+        bmi = max(0.0, min(40.0, round(bmi_from(w, h), 1)))
+        cat, color = bmi_category(bmi)
+
+        # Mover/crear aguja
+        if needle is not None:
+            canvas.delete(needle)
+        ang = angle_for_bmi(bmi)
+        x2 = cx + (radius - 42) * math.cos(ang)
+        y2 = cy + (radius - 42) * math.sin(ang)
+        needle = canvas.create_line(cx, cy, x2, y2, width=4, fill="#263238")
+
+        # Actualizar textos
+        canvas.itemconfigure(bmi_value_text, text=f"{bmi:.1f}", fill=color)
+        canvas.itemconfigure(bmi_cat_text, text=cat)
+
+    # --- Botón calcular ---
+    btn = tk.Button(win, text="CALCULATE BMI", command=actualizar_bmi,
+                    bg="#CFD8DC", fg="#263238", relief="flat", height=2)
+    btn['font'] = font_btn
+    btn.pack(fill="x", padx=16, pady=(0, 8))
+
+    # Calcula una vez para inicializar aguja/textos
+    actualizar_bmi()
+
+    # --- Cerrar ---
+    ttk.Button(win, text="Cerrar", command=win.destroy).pack(pady=6, anchor="e")
